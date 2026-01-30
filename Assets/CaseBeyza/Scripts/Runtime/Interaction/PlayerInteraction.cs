@@ -4,6 +4,8 @@ public class PlayerInteraction : MonoBehaviour
 {
     private Interactable currentInteractable;
 
+    public GameObject ePanel; 
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -11,6 +13,9 @@ public class PlayerInteraction : MonoBehaviour
             if (currentInteractable != null)
             {
                 currentInteractable.Interact();
+
+                if (ePanel != null)
+                    ePanel.SetActive(false);
             }
         }
     }
@@ -20,6 +25,9 @@ public class PlayerInteraction : MonoBehaviour
         if (other.TryGetComponent(out Interactable interactable))
         {
             currentInteractable = interactable;
+
+            if (ePanel != null)
+                ePanel.SetActive(true);
         }
     }
 
@@ -28,7 +36,12 @@ public class PlayerInteraction : MonoBehaviour
         if (other.TryGetComponent(out Interactable interactable))
         {
             if (currentInteractable == interactable)
+            {
                 currentInteractable = null;
+
+                if (ePanel != null)
+                    ePanel.SetActive(false);
+            }
         }
     }
 }
