@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class InventorySlotUI : MonoBehaviour,
-    IBeginDragHandler, IDragHandler, IEndDragHandler
+    IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
 {
     public Image iconImage;
     public ItemData currentItem;
@@ -31,6 +31,7 @@ public class InventorySlotUI : MonoBehaviour,
         iconImage.enabled = false;
     }
 
+    // ---------------- DRAG ----------------
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (currentItem == null) return;
@@ -57,11 +58,34 @@ public class InventorySlotUI : MonoBehaviour,
         transform.position = startPos;
     }
 
+    // ---------------- RIGHT CLICK ----------------
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (currentItem == null) return;
+
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            DropToWorld();
+        }
+    }
+
+    // ---------------- DROP (RAYCAST SAFE) ----------------
     void DropToWorld()
     {
+        Vector3 camPos = Camera.main.transform.position;
+        Vector3 forward = Camera.main.transform.forward;
+
+        Vector3 dropPos = camPos + forward * 2f;
+
+        // zemini bul
+        if (Physics.Raycast(camPos, Vector3.down, out RaycastHit hit, 10f))
+        {
+            dropPos = hit.point + Vector3.up * 0.15f;
+        }
+
         Instantiate(
             currentItem.worldPrefab,
-            Camera.main.transform.position + Camera.main.transform.forward * 2f,
+            dropPos,
             Quaternion.identity
         );
 
