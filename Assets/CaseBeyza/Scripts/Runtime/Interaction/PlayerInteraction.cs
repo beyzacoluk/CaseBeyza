@@ -7,10 +7,17 @@ public class PlayerInteraction : MonoBehaviour
     private PickupItem currentPickup;
 
     public GameObject ePanel;
+    public GameObject fPanel;   
     public Image progressFill;
 
     public float holdTime = 1.5f;
     private float holdTimer;
+
+    void Start()
+    {
+        if (ePanel != null) ePanel.SetActive(false);
+        if (fPanel != null) fPanel.SetActive(false);
+    }
 
     void Update()
     {
@@ -18,7 +25,7 @@ public class PlayerInteraction : MonoBehaviour
         HandlePickup();
     }
 
-    // ---------------- INTERACT (E HOLD) ----------------
+    
     void HandleInteract()
     {
         if (currentInteractable == null)
@@ -43,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    // ---------------- PICKUP (F PRESS) ----------------
+    
     void HandlePickup()
     {
         if (currentPickup == null)
@@ -53,11 +60,15 @@ public class PlayerInteraction : MonoBehaviour
         {
             InventoryManager.instance.AddItem(currentPickup.itemData);
             Destroy(currentPickup.gameObject);
+
             currentPickup = null;
+
+            if (fPanel != null)
+                fPanel.SetActive(false);
         }
     }
 
-    // ---------------- TRIGGERS ----------------
+    
     void OnTriggerEnter(Collider other)
     {
         // interactable (chest, door)
@@ -76,6 +87,9 @@ public class PlayerInteraction : MonoBehaviour
         if (other.TryGetComponent(out PickupItem pickup))
         {
             currentPickup = pickup;
+
+            if (fPanel != null)
+                fPanel.SetActive(true);
         }
     }
 
@@ -93,11 +107,16 @@ public class PlayerInteraction : MonoBehaviour
         if (other.TryGetComponent(out PickupItem pickup))
         {
             if (currentPickup == pickup)
+            {
                 currentPickup = null;
+
+                if (fPanel != null)
+                    fPanel.SetActive(false);
+            }
         }
     }
 
-    // ---------------- RESET ----------------
+    
     void ResetProgress()
     {
         holdTimer = 0f;

@@ -71,6 +71,11 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public bool HasItem(ItemData item)
+    {
+        return items.Contains(item);
+    }
+
     void RefreshUI()
     {
         InventorySlotUI[] slots =

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2647831210726239281}
   - component: {fileID: -5899882005001042020}
   m_Layer: 0
-  m_Name: Example_Item
+  m_Name: P_Example_Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 1.1
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
