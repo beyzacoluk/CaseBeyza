@@ -18,10 +18,10 @@ public class PlayerMovement : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal"); // a d
         float moveZ = Input.GetAxis("Vertical");   // w s
 
-        Vector3 velocity = rb.velocity;
+        Vector3 velocity = rb.linearVelocity;
         velocity.x = moveX * moveSpeed;
         velocity.z = moveZ * moveSpeed;
-        rb.velocity = velocity;
+        rb.linearVelocity = velocity;
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
