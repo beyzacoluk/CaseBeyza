@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key2
   icon: {fileID: 21300000, guid: 5e90b64199f87ab49b40aab2763ea12c, type: 3}
-  worldPrefab: {fileID: 8142595914383985110, guid: f57e12ab897a0b04fb2ecea23b87b2ee, type: 3}
+  worldPrefab: {fileID: 1480937789006738558, guid: 88945cc98ca8a6a4b9984ec943958255, type: 3}
