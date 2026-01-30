@@ -4,22 +4,32 @@ using UnityEngine.UI;
 public class PlayerInteraction : MonoBehaviour
 {
     private Interactable currentInteractable;
+    private PickupItem currentPickup;
 
     public GameObject ePanel;
     public Image progressFill;
 
     public float holdTime = 1.5f;
-
     private float holdTimer;
 
     void Update()
     {
-        if (currentInteractable == null) return;
+        HandleInteract();
+        HandlePickup();
+    }
+
+    // ---------------- INTERACT (E HOLD) ----------------
+    void HandleInteract()
+    {
+        if (currentInteractable == null)
+            return;
 
         if (Input.GetKey(KeyCode.E) && currentInteractable.CanInteract())
         {
             holdTimer += Time.deltaTime;
-            progressFill.fillAmount = holdTimer / holdTime;
+
+            if (progressFill != null)
+                progressFill.fillAmount = holdTimer / holdTime;
 
             if (holdTimer >= holdTime)
             {
@@ -33,8 +43,24 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
+    // ---------------- PICKUP (F PRESS) ----------------
+    void HandlePickup()
+    {
+        if (currentPickup == null)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            InventoryManager.instance.AddItem(currentPickup.itemData);
+            Destroy(currentPickup.gameObject);
+            currentPickup = null;
+        }
+    }
+
+    // ---------------- TRIGGERS ----------------
     void OnTriggerEnter(Collider other)
     {
+        // interactable (chest, door)
         if (other.TryGetComponent(out Interactable interactable))
         {
             if (!interactable.CanInteract())
@@ -44,6 +70,12 @@ public class PlayerInteraction : MonoBehaviour
 
             if (ePanel != null)
                 ePanel.SetActive(true);
+        }
+
+        // pickup item
+        if (other.TryGetComponent(out PickupItem pickup))
+        {
+            currentPickup = pickup;
         }
     }
 
@@ -57,8 +89,15 @@ public class PlayerInteraction : MonoBehaviour
                 currentInteractable = null;
             }
         }
+
+        if (other.TryGetComponent(out PickupItem pickup))
+        {
+            if (currentPickup == pickup)
+                currentPickup = null;
+        }
     }
 
+    // ---------------- RESET ----------------
     void ResetProgress()
     {
         holdTimer = 0f;
