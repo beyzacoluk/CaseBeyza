@@ -5,10 +5,18 @@ public class ChestInteractable : Interactable
     public Animator animator;
 
     [Header("Item Spawn")]
-    public GameObject itemPrefab;      // spawn edilecek item
-    public Transform spawnPoint;       // item spawn noktası
+    public GameObject itemPrefab;      
+    public Transform spawnPoint;       
 
     private bool m_opened;
+    private Collider m_collider;
+
+    void Awake()
+    {
+        m_collider = GetComponent<Collider>();
+        if (m_collider == null)
+            Debug.LogWarning("ChestInteractable: Collider bulunamadı!");
+    }
 
     public override void Interact()
     {
@@ -22,6 +30,10 @@ public class ChestInteractable : Interactable
         Debug.Log("Chest açıldı");
 
         SpawnItem();
+
+        
+        if (m_collider != null)
+            m_collider.enabled = false;
     }
 
     void SpawnItem()

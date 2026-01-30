@@ -1,0 +1,124 @@
+PROMPTS_TEMPLATE.md
+# LLM Kullanım Dokümantasyonu
+
+> Bu dosyayı case boyunca kullandığınız LLM (ChatGPT, Claude, Copilot vb.) etkileşimlerini belgelemek için kullanın.
+> Dürüst ve detaylı dokümantasyon beklenmektedir.
+
+## Özet
+
+| Bilgi | Değer |
+|-------|-------|
+| Toplam prompt sayısı | 3|
+| Kullanılan araçlar | ChatGPT / Trae/ Gemini|
+| En çok yardım alınan konular | [Kod Fix] |
+| Tahmini LLM ile kazanılan süre | 2 saat |
+
+---
+
+## Prompt 1: [Interaction with player]
+
+**Araç:** [ChatGPT-4 / Claude / GitHub Copilot]
+**Tarih/Saat:** 2026.01.31 16.43
+
+**Prompt:**
+```
+[Yolladığım Koddaki hatalı kısımları bana yaz ve player ile etkileşime girdiğinde debug yolla]
+```
+
+**Alınan Cevap (Özet):Interactable ve playerinteraction kodu düzeltilmiş **
+```
+[Cevabın özeti veya önemli kısımlar - çok uzunsa kısaltabilirsiniz]
+```
+
+**Nasıl Kullandım:**
+- [ ] Direkt kullandım (değişiklik yapmadan)
+- [x] Adapte ettim (değişiklikler yaparak)
+- [ ] Reddettim (kullanmadım)
+
+**Açıklama:**
+> [Bir türlü etkileşime geçmiyordu player ile. Farklı bir için tavsiye aldım]
+
+**Yapılan Değişiklikler (Player tagı kullandım kullanıcıya rigidbody ekledim(unutmuşum)):**
+> [LLM cevabını nasıl değiştirdiğinizi açıklayın]
+
+---
+
+## Prompt 2: [Görsel düzenleme]
+
+**Araç:** [Gemini]
+**Tarih/Saat:** belli değil
+
+**Prompt:**
+```
+[Attığım anahtar görselini pembe yap]
+```
+
+**Alınan Cevap (Özet):**
+```
+[İstenilen görsel]
+```
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> [Açıklama]
+
+---
+
+
+## Prompt 3: [Optimize]
+
+**Araç:** [Trae]
+**Tarih/Saat:** belli değil
+
+**Prompt:**
+```
+[Oyun içi kodları kontrol et ve nerelerin hatalı olduğuna bak. daha iyi hallerini göster]
+```
+
+**Alınan Cevap (Özet):kodlarda birkaç düzenleme**
+```
+[Daha temiz bir düzen]
+```
+
+**Nasıl Kullandım:**
+- [x] Direkt kullandım
+- [ ] Adapte ettim
+- [ ] Reddettim
+
+**Açıklama:**
+> [Açıklama]
+
+---
+
+## Genel Değerlendirme
+
+### LLM'in En Çok Yardımcı Olduğu Alanlar
+1. [Clean Kod]
+2. [Bug fix]
+3. [Görsel düzenleme]
+
+### LLM'in Yetersiz Kaldığı Alanlar
+1. [Alan 1 - neden yetersiz kaldığı]
+2. [Alan 2]
+
+### LLM Kullanımı Hakkında Düşüncelerim
+> [Bu case boyunca LLM kullanarak neler öğrendiniz?
+> LLM'siz ne kadar sürede bitirebilirdiniz? 1 gün
+> Gelecekte LLM'i nasıl daha etkili kullanabilirsiniz?] Sistemleri daha iyi aktarıp daha açıksız cevaplar  
+
+---
+
+## Notlar
+
+- Her önemli LLM etkileşimini kaydedin
+- Copy-paste değil, anlayarak kullandığınızı gösterin
+- LLM'in hatalı cevap verdiği durumları da belirtin
+- Dürüst olun - LLM kullanımı teşvik edilmektedir
+
+---
+
+*Bu şablon Ludu Arts Unity Intern Case için hazırlanmıştır.*
